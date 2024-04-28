@@ -1,4 +1,4 @@
-!
+![Calculator](C:\Projects\repos\Calculator\Calc.jpg)
 
 Hello! Welcome to console calculator.
 
