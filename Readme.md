@@ -1,4 +1,4 @@
-![Calculator](C:\Projects\repos\Calculator\Calc.jpg)
+![Calculator](https://raw.githubusercontent.com/WipeRrr/Calculator/master/Calc.jpg) 
 
 Hello! Welcome to console calculator.
 
