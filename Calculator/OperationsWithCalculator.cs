@@ -89,7 +89,6 @@ class OperationsWithCalculator
             if (!double.TryParse(parts[0], out num1) || !double.TryParse(parts[1], out num2 ))
             {
                 Console.WriteLine("Invalid expression. Incorrect number format.");
-                Console.WriteLine("Enter an expression in the format: number1 1-operator(+,-,*,/) number2 (for example, 2 + 2)");
             result = double.NaN;
             }
 
