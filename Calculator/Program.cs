@@ -14,7 +14,7 @@ class Program
         Console.WriteLine("Press Esc to exit app");
         Console.WriteLine("Write an expression. If you made a mistake with your input, you can delete it by pressing the backspace button\n");
 
-        OperationsWithCalculator  operation = new OperationsWithCalculator(); 
+        var  operation = new OperationsWithCalculator(); 
 
         while (true) { 
             //Отслеживаем что вводит пользователь и записываем результат в переменную
