@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Calculator;
+﻿namespace Calculator;
 
 class Program
 {
@@ -14,22 +11,16 @@ class Program
         Console.WriteLine("Press Esc to exit app");
         Console.WriteLine("Write an expression. If you made a mistake with your input, you can delete it by pressing the backspace button\n");
 
-        var  operation = new OperationsWithCalculator(); 
+        var operation = new OperationsWithCalculator();
 
-        while (true) { 
+        while (true)
+        {
             //Отслеживаем что вводит пользователь и записываем результат в переменную
             var input = operation.GetExpressionFromUser();
-           
-            //Отслеживаем какая буджет операция и проверяем на ввод корректтного числа операторов.
-           char op = operation.CheckWhatOperation(input);   
-            if(op == ' ')
-            {
-                Console.WriteLine("\nInvalid expression.You need to write 2 numbers and only 1 operator");
-                continue;
-            }
 
-            //Разбиваем строку на 2 части с помощью  методов массива и проводим математическую операцию, выводим в консоль результат
-            operation.DoMathOperations(input, op);
+            //Разбиваем строку на 2 части с помощью  методов массива и проводим математическую операцию
+            var result = operation.DoMathOperations(input);
+            Console.WriteLine(result);
         }
 
     }

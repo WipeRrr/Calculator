@@ -1,11 +1,8 @@
-using System;
-
-
 namespace Calculator;
 
 class OperationsWithCalculator
 {
-    public string GetExpressionFromUser( )
+    public string GetExpressionFromUser()
     {
         var input = "";
 
@@ -77,49 +74,55 @@ class OperationsWithCalculator
         {
             return ' ';
         }
+
         return op;
     }
-    public void DoMathOperations(string input,char op)
+    public double DoMathOperations(string input)
     {
-      
-            string[] parts = input.Split(op);
-            double result = 0;
-            double num1 = 0;
-            double num2 = 0;
-            if (!double.TryParse(parts[0], out num1) || !double.TryParse(parts[1], out num2 ))
-            {
-                Console.WriteLine("Invalid expression.Incorrect number format.");
+        var op = CheckWhatOperation(input);
+        if (op == ' ')
+        {
+            Console.WriteLine("\nInvalid expression.You need to write 2 numbers and only 1 operator");
+            return 0;
+        }
+        string[] parts = input.Split(op);
+        double result = 0;
+        double num1 = 0;
+        double num2 = 0;
+        if (!double.TryParse(parts[0], out num1) || !double.TryParse(parts[1], out num2))
+        {
+            Console.WriteLine("Invalid expression.Incorrect number format.");
             result = double.NaN;
-            }
+        }
 
 
-            switch (op)
-            {
+        switch (op)
+        {
 
-                case '+':
-                    result = num1 + num2;
-                    break;
+            case '+':
+                result = num1 + num2;
+                break;
 
-                case '-':
-                    result = num1 - num2;
-                    break;
+            case '-':
+                result = num1 - num2;
+                break;
 
-                case '/':
-                    if (num2 == 0)
-                    {
-                        Console.WriteLine("You can't divide by 0.Try again.");
+            case '/':
+                if (num2 == 0)
+                {
+                    Console.WriteLine("You can't divide by 0.Try again.");
 
-                    }
-                    result = num1 / num2;
-                    break;
+                }
+                result = num1 / num2;
+                break;
 
-                case '*':
-                    result = num1 * num2;
-                    break;
+            case '*':
+                result = num1 * num2;
+                break;
 
-            }
-            Console.WriteLine(result);
-
-    }
+        }
+        return result;
 
     }
+
+}
