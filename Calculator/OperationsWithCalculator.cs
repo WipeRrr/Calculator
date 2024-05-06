@@ -88,7 +88,7 @@ class OperationsWithCalculator
             double num2 = 0;
             if (!double.TryParse(parts[0], out num1) || !double.TryParse(parts[1], out num2 ))
             {
-                Console.WriteLine("Invalid expression. Incorrect number format.");
+                Console.WriteLine("Invalid expression.Incorrect number format.");
             result = double.NaN;
             }
 
