@@ -47,7 +47,7 @@ class OperationsWithCalculator
     public char CheckWhatOperation(string input)
     {
 
-        char[] operators = { '+', '-', '*', '/' };
+        char[] operators = ['+', '-', '*', '/'];
         char op = '0';
 
         foreach (char symbol in operators)
