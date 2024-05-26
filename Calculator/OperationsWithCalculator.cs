@@ -12,7 +12,7 @@ class OperationsWithCalculator
         char op = Constants.opIsFalse;
         for (int i = 1; i < input.Length; i++)
         {
-            if (Constants.Operators.Contains(input[i]) && (i == 1 || !Constants.Operators.Contains(input[i - 1])))
+            if (Constants.IsOperator(input[i]) && (i == 1 || !Constants.IsOperator(input[i - 1])))
             {
 
                 op = input[i];
@@ -41,15 +41,15 @@ class OperationsWithCalculator
         switch (op)
         {
 
-            case '+':
+            case (char)Constants.Operators.Plus:
                 result = num1 + num2;
                 break;
 
-            case '-':
+            case (char)Constants.Operators.Minus:
                 result = num1 - num2;
                 break;
 
-            case '/':
+            case (char)Constants.Operators.Divide:
                 if (num2 == 0)
                 {
                     Console.WriteLine("You can't divide by 0.Try again.");
@@ -58,10 +58,10 @@ class OperationsWithCalculator
                 result = num1 / num2;
                 break;
 
-            case '*':
+            case (char)Constants.Operators.Multiply:
                 result = num1 * num2;
                 break;
-            case '^':
+            case (char)Constants.Operators.Power:
                 result = Math.Pow(num1, num2);
                 break;
 
