@@ -10,11 +10,12 @@ class OperationsWithCalculator
     public double DoMathOperations(string input)
     {
         char op = Constants.opIsFalse;
+        int opIndex = -1;
         for (int i = 1; i < input.Length; i++)
         {
             if (Constants.IsOperator(input[i]) && (i == 1 || !Constants.IsOperator(input[i - 1])))
             {
-
+                opIndex = i;
                 op = input[i];
                 break;
             }
@@ -26,13 +27,15 @@ class OperationsWithCalculator
             return 0;
         }
 
-        string[] parts = input.Split(op);
+        // –азделение строки с учетом отрицательных чисел
+        string firstPart = input.Substring(0, opIndex);
+        string secondPart = input.Substring(opIndex + 1);
 
         double result = 0;
         double num2 = 0;
         double num1;
-        if (!double.TryParse(parts[0].Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num1) ||
-            !double.TryParse(parts[1].Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num2))
+        if (!double.TryParse(firstPart.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num1) ||
+            !double.TryParse(secondPart.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num2))
         {
             Console.WriteLine("Invalid expression. Incorrect number format.");
             result = double.NaN;
