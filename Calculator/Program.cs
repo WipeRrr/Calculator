@@ -12,7 +12,7 @@ class Program
         Console.WriteLine("Write an expression. If you made a mistake with your input, you can delete it by pressing the backspace button\n");
 
         var operation = new OperationsWithCalculator();
-        var getExpression = new GetExpression();
+        var getExpression = new ExpressionReceiver();
 
         while (true)
         {
