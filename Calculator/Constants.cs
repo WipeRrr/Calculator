@@ -12,7 +12,9 @@ namespace Calculator
             Minus = '-',
             Multiply = '*',
             Divide = '/',
-            Power = '^'
+            Power = '^',
+            Root = 'r',
+            Remainder = '%'
         }
         public static bool IsOperator(char c)
         {

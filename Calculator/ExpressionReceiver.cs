@@ -37,7 +37,16 @@ namespace Calculator
                 Console.Write("\b \b");
             }
 
-            if (char.IsDigit(key.KeyChar) || Constants.IsOperator(key.KeyChar) || ",.".Contains(key.KeyChar))
+
+                if (key.KeyChar == 'r')
+                {
+                    input += 'r'; 
+                    Console.Write(key.KeyChar);
+                    Console.Write("=");
+                    break; 
+                }
+
+                if (char.IsDigit(key.KeyChar) || Constants.IsOperator(key.KeyChar) || ",.".Contains(key.KeyChar))
             {
 
                 input += key.KeyChar;
