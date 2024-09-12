@@ -4,19 +4,21 @@ namespace Calculator;
 
 internal class OperationsWithCalculator
 {
-    public double DoMathOperations(string input)
+    public double DoMathOperations(string input, char[] allowedOperators = null)
     {
         char op = Constants.opIsFalse;
         int opIndex = -1;
         for (int i = 1; i < input.Length; i++)
         {
-
-
-            if (Constants.IsOperator(input[i]) && (i == 1 || !Constants.IsOperator(input[i - 1])))
+            if (allowedOperators == null || allowedOperators.Contains(input[i]))
             {
-                opIndex = i;
-                op = input[i];
-                break;
+
+                if (Constants.IsOperator(input[i]) && (i == 1 || !Constants.IsOperator(input[i - 1])))
+                {
+                    opIndex = i;
+                    op = input[i];
+                    break;
+                }
             }
         }
 

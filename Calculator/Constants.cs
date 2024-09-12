@@ -22,5 +22,9 @@ namespace Calculator
         }
 
         public static readonly char opIsFalse = '0';
+
+        public static char[] BasicOperators => new[] { '+', '-', '*', '/' };
+
+        public static char[] AllOperators => Enum.GetValues(typeof(Operators)).Cast<Operators>().Select(op => (char)op).ToArray();
     }
 }

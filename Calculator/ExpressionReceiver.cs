@@ -6,11 +6,14 @@ namespace Calculator
 
     internal class ExpressionReceiver { 
 
-    public string GetExpressionFromUser()
+    public string GetExpressionFromUser(bool allowExtendedOperators = false)
     {
         var input = "";
+        var allowedOperators = allowExtendedOperators
+               ? Constants.AllOperators
+               : Constants.BasicOperators;
 
-        while (true)
+            while (true)
         {
             var key = Console.ReadKey(true);
 
@@ -38,16 +41,9 @@ namespace Calculator
             }
 
 
-                if (key.KeyChar == 'r')
+                if (char.IsDigit(key.KeyChar) || ",.".Contains(key.KeyChar) ||
+                         (allowedOperators.Contains(key.KeyChar) && !",.".Contains(key.KeyChar)))
                 {
-                    input += 'r'; 
-                    Console.Write(key.KeyChar);
-                    Console.Write("=");
-                    break; 
-                }
-
-                if (char.IsDigit(key.KeyChar) || Constants.IsOperator(key.KeyChar) || ",.".Contains(key.KeyChar))
-            {
 
                 input += key.KeyChar;
                 Console.Write(key.KeyChar);
