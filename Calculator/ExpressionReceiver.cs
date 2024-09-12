@@ -4,7 +4,7 @@
 namespace Calculator
 {
 
-    class ExpressionReceiver { 
+    internal class ExpressionReceiver { 
 
     public string GetExpressionFromUser()
     {
