@@ -37,7 +37,7 @@ internal class OperationsWithCalculator
         if (!double.TryParse(firstPart.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num1) ||
             op != (char)Constants.Operators.Root && !double.TryParse(secondPart.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num2))
         {
-            Console.WriteLine("Invalid expression. Incorrect number format.");
+            Console.WriteLine("\nInvalid expression. Incorrect number format.");
             return double.NaN;
         }
 
