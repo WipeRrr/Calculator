@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Outputter
 {
-    public class ConsoleOutputter : IOutputter
+    internal class ConsoleOutputter : IOutputter
     {
         public void Output(string message)
         {

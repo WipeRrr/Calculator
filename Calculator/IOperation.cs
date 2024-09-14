@@ -2,7 +2,7 @@
 
 namespace Calculator
 {
-    public interface IOperation
+    internal interface IOperation
     {
         double PerformOperation(double num1, double num2);
     }

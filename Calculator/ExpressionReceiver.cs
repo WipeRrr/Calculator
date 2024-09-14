@@ -4,11 +4,11 @@
 namespace Calculator
 {
 
-    internal class ExpressionReceiver { 
-
-    public string GetExpressionFromUser(bool allowExtendedOperators = false)
+    internal class ExpressionReceiver {
+        public string GetExpressionFromUser(bool allowExtendedOperators = false)
     {
         var input = "";
+
         var allowedOperators = allowExtendedOperators
                ? Constants.AllOperators
                : Constants.BasicOperators;
@@ -50,7 +50,10 @@ namespace Calculator
             }
 
         }
-        return input;
+            return input;
+
     }
+
 }
+
 }

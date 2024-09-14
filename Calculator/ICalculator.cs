@@ -2,7 +2,7 @@
 
 namespace Calculator
 {
-    public interface ICalculator
+    internal interface ICalculator
     {
         double PerformOperation(string input);
     }

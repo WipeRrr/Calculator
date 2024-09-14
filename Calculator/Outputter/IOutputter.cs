@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Outputter
 {
-    public interface IOutputter
+    internal interface IOutputter
     {
         void Output(string message);
     }
