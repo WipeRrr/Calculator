@@ -1,10 +1,19 @@
-﻿using System;
+﻿using Calculator.Outputter;
+using System;
 
 
 namespace Calculator
 {
 
     internal class ExpressionReceiver {
+
+        private IOutputter Outputter { get; }
+        internal ExpressionReceiver(IOutputter outputter)
+
+        {
+            Outputter = outputter;
+        }
+
         public string GetExpressionFromUser(bool allowExtendedOperators = false)
     {
         var input = "";
@@ -19,25 +28,25 @@ namespace Calculator
 
             if (key.Key == ConsoleKey.Escape)
             {
-                Console.WriteLine("\nThank you for using the calculator!\u263A");
+                    Outputter.WriteLine("\nThank you for using the calculator!\u263A");
                 Environment.Exit(0);
             }
             if (key.Key == ConsoleKey.Enter)
             {
-                Console.Write("=");
+                    Outputter.Write("=");
                 break;
             }
 
             if (key.KeyChar == '=')
             {
-                Console.Write("=");
+                    Outputter.Write("=");
                 break;
             }
 
             if (key.Key == ConsoleKey.Backspace && input.Length > 0)
             {
                 input = input.Remove(input.Length - 1);
-                Console.Write("\b \b");
+                    Outputter.Write("\b \b");
             }
 
 
@@ -46,7 +55,7 @@ namespace Calculator
                 {
 
                 input += key.KeyChar;
-                Console.Write(key.KeyChar);
+                    Outputter.Write(key.KeyChar);
             }
 
         }

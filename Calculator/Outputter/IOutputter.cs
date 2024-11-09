@@ -2,6 +2,8 @@
 {
     internal interface IOutputter
     {
-        void Output(string message);
+        void WriteLine(string message);
+        void Write(string message);
+        void Write(char message);
     }
 }

@@ -1,9 +1,16 @@
+using Calculator.Outputter;
 using System.Globalization;
 
 namespace Calculator;
 
-internal class OperationsWithCalculator
-{
+internal class OperationsWithCalculator 
+{ 
+     private IOutputter Outputter { get; }
+   internal OperationsWithCalculator(IOutputter outputter)
+        
+    {
+        Outputter = outputter;
+}
     public double DoMathOperations(string input, char[] allowedOperators = null)
     {
         char op = Constants.opIsFalse;
@@ -24,7 +31,7 @@ internal class OperationsWithCalculator
 
         if (op == Constants.opIsFalse || opIndex == -1)
         {
-            Console.WriteLine("\nInvalid expression. You need to write a valid expression.");
+             Outputter.WriteLine("\nInvalid expression. You need to write a valid expression.");
             return double.NaN;
         }
 
@@ -37,7 +44,7 @@ internal class OperationsWithCalculator
         if (!double.TryParse(firstPart.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num1) ||
             op != (char)Constants.Operators.Root && !double.TryParse(secondPart.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num2))
         {
-            Console.WriteLine("\nInvalid expression. Incorrect number format.");
+            Outputter.WriteLine("\nInvalid expression. Incorrect number format.");
             return double.NaN;
         }
 
@@ -59,7 +66,7 @@ internal class OperationsWithCalculator
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
+            Outputter.WriteLine(ex.Message);
             return double.NaN;
         }
 

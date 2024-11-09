@@ -2,9 +2,17 @@
 {
     internal class ConsoleOutputter : IOutputter
     {
-        public void Output(string message)
+        public void WriteLine(string message)
         {
             Console.WriteLine(message);
+        }
+        public void Write(string message)
+        {
+            Console.Write(message);
+        }
+        public void Write(char message)
+        {
+            Console.Write(message);
         }
     }
 }
