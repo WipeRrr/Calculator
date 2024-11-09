@@ -1,75 +1,74 @@
+using Calculator.Outputter;
 using System.Globalization;
 
 namespace Calculator;
 
-class OperationsWithCalculator
-{
-   
-
-
-    public double DoMathOperations(string input)
+internal class OperationsWithCalculator 
+{ 
+     private IOutputter Outputter { get; }
+   internal OperationsWithCalculator(IOutputter outputter)
+        
+    {
+        Outputter = outputter;
+}
+    public double DoMathOperations(string input, char[] allowedOperators)
     {
         char op = Constants.opIsFalse;
         int opIndex = -1;
         for (int i = 1; i < input.Length; i++)
         {
-            if (Constants.IsOperator(input[i]) && (i == 1 || !Constants.IsOperator(input[i - 1])))
+            if (allowedOperators == null || allowedOperators.Contains(input[i]))
             {
-                opIndex = i;
-                op = input[i];
-                break;
+
+                if (Constants.IsOperator(input[i]) && (i == 1 || !Constants.IsOperator(input[i - 1])))
+                {
+                    opIndex = i;
+                    op = input[i];
+                    break;
+                }
             }
         }
 
-        if (op == Constants.opIsFalse)
+        if (op == Constants.opIsFalse || opIndex == -1)
         {
-            Console.WriteLine("\nInvalid expression. You need to write a valid expression.");
-            return 0;
+             Outputter.WriteLine("\nInvalid expression. You need to write a valid expression.");
+            return double.NaN;
         }
 
         // –азделение строки с учетом отрицательных чисел
         string firstPart = input.Substring(0, opIndex);
         string secondPart = input.Substring(opIndex + 1);
 
-        double result = 0;
-        double num2 = 0;
-        double num1;
+       
+        double num1, num2 = 0;
         if (!double.TryParse(firstPart.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num1) ||
-            !double.TryParse(secondPart.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num2))
+            op != (char)Constants.Operators.Root && !double.TryParse(secondPart.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out num2))
         {
-            Console.WriteLine("Invalid expression. Incorrect number format.");
-            result = double.NaN;
+            Outputter.WriteLine("\nInvalid expression. Incorrect number format.");
+            return double.NaN;
         }
 
-        switch (op)
+        IOperation operation = op switch
         {
+            (char)Constants.Operators.Plus => new Addition(),
+            (char)Constants.Operators.Minus => new Subtraction(),
+            (char)Constants.Operators.Multiply => new Multiplication(),
+            (char)Constants.Operators.Divide => new Division(),
+            (char)Constants.Operators.Power => new Power(),
+            (char)Constants.Operators.Root => new Root(),
+            (char)Constants.Operators.Remainder => new Remainder(),
+            _ => throw new InvalidOperationException("Invalid operation.")
+        };
 
-            case (char)Constants.Operators.Plus:
-                result = num1 + num2;
-                break;
-
-            case (char)Constants.Operators.Minus:
-                result = num1 - num2;
-                break;
-
-            case (char)Constants.Operators.Divide:
-                if (num2 == 0)
-                {
-                    Console.WriteLine("You can't divide by 0.Try again.");
-
-                }
-                result = num1 / num2;
-                break;
-
-            case (char)Constants.Operators.Multiply:
-                result = num1 * num2;
-                break;
-            case (char)Constants.Operators.Power:
-                result = Math.Pow(num1, num2);
-                break;
-
+        try
+        {
+            return operation.PerformOperation(num1, num2);
         }
-        return result;
+        catch (Exception ex)
+        {
+            Outputter.WriteLine(ex.Message);
+            return double.NaN;
+        }
 
     }
 
