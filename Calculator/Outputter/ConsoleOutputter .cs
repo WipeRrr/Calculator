@@ -6,6 +6,10 @@
         {
             Console.WriteLine(message);
         }
+        public void WriteLine(char message)
+        {
+            Console.WriteLine(message);
+        }
         public void Write(string message)
         {
             Console.Write(message);

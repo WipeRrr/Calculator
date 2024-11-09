@@ -8,16 +8,17 @@ namespace Calculator
 
         private readonly OperationsWithCalculator _operations;
         private IOutputter Outputter { get; }
-
-        internal ExtendedCalculator(IOutputter outputter)
+        private char[] _allowedOperators { get; }
+        internal ExtendedCalculator(IOutputter outputter, char[] allowedOperators)
         {
             Outputter = outputter;
             _operations = new OperationsWithCalculator(Outputter);
+            _allowedOperators = allowedOperators;
         }
 
         public double PerformOperation(string input)
         {
-            return _operations.DoMathOperations(input);
+            return _operations.DoMathOperations(input, _allowedOperators);
         }
     }
 }

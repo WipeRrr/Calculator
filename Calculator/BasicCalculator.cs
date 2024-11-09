@@ -9,27 +9,20 @@ namespace Calculator
 
         private readonly OperationsWithCalculator _operations;
         private IOutputter Outputter { get; }
+        private char[] _allowedOperators { get;  }
 
-        internal BasicCalculator(IOutputter outputter)
+        internal BasicCalculator(IOutputter outputter, char[] allowedOperators)
         {
             Outputter = outputter;
             _operations = new OperationsWithCalculator(Outputter);
+            _allowedOperators = allowedOperators;
         }
-
-
-        //private readonly OperationsWithCalculator _operations = new OperationsWithCalculator(Outputter);
-        //private IOutputter  Outputter {get;}
-        //internal BasicCalculator(IOutputter outputter)
-        //{
-        //    Outputter = outputter;  
-        //}
 
         public double PerformOperation(string input)
         {
             
-            char[] allowedOperators = { '+', '-', '*', '/' };
 
-            return _operations.DoMathOperations(input, allowedOperators);
+            return _operations.DoMathOperations(input, _allowedOperators);
         }
     }
 }

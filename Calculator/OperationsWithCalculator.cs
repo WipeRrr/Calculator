@@ -11,7 +11,7 @@ internal class OperationsWithCalculator
     {
         Outputter = outputter;
 }
-    public double DoMathOperations(string input, char[] allowedOperators = null)
+    public double DoMathOperations(string input, char[] allowedOperators)
     {
         char op = Constants.opIsFalse;
         int opIndex = -1;
