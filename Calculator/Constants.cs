@@ -1,5 +1,4 @@
-﻿
-using static Calculator.Constants;
+﻿using static Calculator.Constants;
 
 namespace Calculator
 {
@@ -7,10 +6,10 @@ namespace Calculator
     {
         public static readonly char opIsFalse = '0';
 
-        public static char[] BasicOperators =  new BasicOperators().operators;
 
+        public  char[] BasicOperators = { '+', '-', '*', '/' };
 
-        public static char[] AllOperators => Enum.GetValues(typeof(Operators)).Cast<Operators>().Select(op => (char)op).ToArray();
+        public  char[] AllOperators => Enum.GetValues(typeof(Operators)).Cast<Operators>().Select(op => (char)op).ToArray();
 
 
     public string GetAllOperators()
@@ -27,6 +26,26 @@ namespace Calculator
             }
             return value.ToString();
         }
+
+        public  string GetBasicOperators()
+        {
+            var value = "";
+            for (int i = 0; i < BasicOperators.Length; i++)
+            {
+
+                if (i < BasicOperators.Length - 1)
+                {
+                    value += BasicOperators[i] + ", ";
+                }
+                else value += BasicOperators[i] + ".";
+            }
+            return value.ToString();
+        }
+        public static bool IsOperator(char c)
+        {
+            return Enum.IsDefined(typeof(Operators), (int)c);         
+        }
+
         public enum Operators
         {
             Plus = '+',
@@ -37,11 +56,6 @@ namespace Calculator
             Root = 'r',
             Remainder = '%'
         }
-        public static bool IsOperator(char c)
-        {
-            return Enum.IsDefined(typeof(Operators), (int)c);         
-        }
 
-      
     }
 }

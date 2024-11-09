@@ -14,13 +14,13 @@ namespace Calculator
             Outputter = outputter;
         }
 
-        public string GetExpressionFromUser(bool allowExtendedOperators = false)
+        public string GetExpressionFromUser(Constants constants, bool allowExtendedOperators = false)
     {
         var input = "";
 
         var allowedOperators = allowExtendedOperators
-               ? Constants.AllOperators
-               : Constants.BasicOperators;
+               ? constants.AllOperators
+               : constants.BasicOperators;
 
             while (true)
         {

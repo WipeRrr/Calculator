@@ -11,7 +11,6 @@ namespace Calculator
         internal CalculatorGreeting(IOutputter outputter)
         {
             Outputter = outputter;
-          
 
         }
 
