@@ -4,6 +4,17 @@ namespace Calculator
 {
     public  class Constants
     {
+        public enum Operators
+        {
+            Plus = '+',
+            Minus = '-',
+            Multiply = '*',
+            Divide = '/',
+            Power = '^',
+            Root = 'r',
+            Remainder = '%'
+        }
+
         public static readonly char opIsFalse = '0';
 
 
@@ -45,17 +56,5 @@ namespace Calculator
         {
             return Enum.IsDefined(typeof(Operators), (int)c);         
         }
-
-        public enum Operators
-        {
-            Plus = '+',
-            Minus = '-',
-            Multiply = '*',
-            Divide = '/',
-            Power = '^',
-            Root = 'r',
-            Remainder = '%'
-        }
-
     }
 }
